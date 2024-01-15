@@ -16,7 +16,7 @@ int sum_odd_digits(int n)
 
 int main(){
 
-    cout<<sum_odd_digits(15);
+    cout<<sum_odd_digits(132)<<endl;
 
     return 0;
 }
