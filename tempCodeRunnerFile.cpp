@@ -1,4 +1,20 @@
-(int j = nums.size(); j < s; j++)
+bool isSubsequence(string s, string t)
+{
+    int i = 0, j = 0;
+    while (j < t.size())
     {
-        nums.push_back(0);
+        if (s[i] == t[j])
+        {
+            i++;
+            j++;
+        }
+        else
+        {
+            j++;
+        }
     }
+    if (i >= s.size())
+        return true;
+    else
+        return false;
+}
