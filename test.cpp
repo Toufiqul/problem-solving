@@ -1,34 +1,35 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-bool isSubsequence(string s, string t)
-{
-    int i = 0, j = 0;
-    while (j < t.size())
-    {
-        if (s[i] == t[j])
-        {
-            i++;
-            j++;
-        }
-        else
-        {
-            j++;
-        }
-    }
-    if (i >= s.size())
-        return true;
-    else
-        return false;
+map<int,bool> visited;
+map<int,list<int> > adj;
+
+void addEdge(int u, int v){
+    adj[u].push_back(v);
 }
+
+void DFS(int u){
+    visited[u]=true;
+    cout<<u<<" ";
+    for(auto i = adj[u].begin(); i != adj[u].end();i++){
+        if(!visited[*i]) DFS(*i);
+    }
+}
+
 
 int main()
 {
+    addEdge(0, 1);
+    addEdge(0, 2);
+    addEdge(1, 2);
+    addEdge(2, 0);
+    addEdge(2, 3);
+    addEdge(3, 3);
+    cout << "Following is Depth First Traversal"
+            " (starting from vertex 2) \n";
 
-    // string s = "abc", t = "ahbgdc";
-    string s = "axc", t = "ahbgdc";
-
-    cout << isSubsequence(s, t) << endl;
+    // Function call
+    DFS(2);
 
     return 0;
 }
