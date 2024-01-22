@@ -11,7 +11,7 @@ void addEdge(int u, int v){
 void DFS(int u){
     visited[u]=true;
     cout<<u<<" ";
-    for(auto i = adj[u].begin(); i != adj[u].end();i++){
+    for(auto i = adj[u].begin(); i != adj[u].end();++i){
         if(!visited[*i]) DFS(*i);
     }
 }
