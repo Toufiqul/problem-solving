@@ -1,35 +1,53 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-map<int,bool> visited;
-map<int,list<int> > adj;
+int graph[100][100];
+int n;
 
-void addEdge(int u, int v){
-    adj[u].push_back(v);
-}
+bool DFS(int node, bool *visited, bool *inloop, int &prev){
 
-void DFS(int u){
-    visited[u]=true;
-    cout<<u<<" ";
-    for(auto i = adj[u].begin(); i != adj[u].end();++i){
-        if(!visited[*i]) DFS(*i);
+    visited[node] = true;
+    inloop[node] = true;
+
+    for(int i =0; i < 100; i++){
+        if(graph[node][i]){
+            if(!visited[i]){
+                if(DFS(i,visited,inloop,prev)){
+                    if(i==prev)
+                    cout<<i<<" ", prev = -1;
+                    else if(prev != -1)
+                    cout<<i<<" ";
+
+                    return true;
+                }
+            }
+            else if(inloop[i]){
+                prev=i;
+                return true;
+            }
+        }
+
     }
+    inloop[node] = false;
+    return false;
 }
+
+bool checkCycle(bool *visited){
+    int prev = -1;
+    bool inloop[n]={false};
+
+    for(int i=0;i<n;i++){
+        if(!visited[i] && DFS(i,visited,inloop,prev)){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 int main()
 {
-    addEdge(0, 1);
-    addEdge(0, 2);
-    addEdge(1, 2);
-    addEdge(2, 0);
-    addEdge(2, 3);
-    addEdge(3, 3);
-    cout << "Following is Depth First Traversal"
-            " (starting from vertex 2) \n";
-
-    // Function call
-    DFS(2);
 
     return 0;
 }
