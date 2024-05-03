@@ -1,53 +1,35 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
+#include<algorithm> // for std::transform
 using namespace std;
 
-int graph[100][100];
-int n;
+int main() {
+    string s = "";
+    int t;
 
-bool DFS(int node, bool *visited, bool *inloop, int &prev){
+    cin >> t;
 
-    visited[node] = true;
-    inloop[node] = true;
+    cin >> s;
 
-    for(int i =0; i < 100; i++){
-        if(graph[node][i]){
-            if(!visited[i]){
-                if(DFS(i,visited,inloop,prev)){
-                    if(i==prev)
-                    cout<<i<<" ", prev = -1;
-                    else if(prev != -1)
-                    cout<<i<<" ";
+    // Convert the string to uppercase
+    transform(s.begin(), s.end(), s.begin(), ::toupper);
 
-                    return true;
-                }
-            }
-            else if(inloop[i]){
-                prev=i;
-                return true;
-            }
-        }
+    int arr[26] = {0}; // Initialize array with zeros
+    int cnt = 0;
 
-    }
-    inloop[node] = false;
-    return false;
-}
-
-bool checkCycle(bool *visited){
-    int prev = -1;
-    bool inloop[n]={false};
-
-    for(int i=0;i<n;i++){
-        if(!visited[i] && DFS(i,visited,inloop,prev)){
-            return true;
+    for (char c : s) {
+        if (isalpha(c)) {
+            arr[c - 'A']++;
         }
     }
-    return false;
-}
 
+    for (int i = 0; i < 26; i++) {
+        if (i + 1 >= arr[i]) {
+            cnt++;
+        }
+    }
 
-
-int main()
-{
+    cout << cnt << endl;
 
     return 0;
 }
