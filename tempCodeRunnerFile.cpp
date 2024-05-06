@@ -1,2 +1,3 @@
-0,3,99};
-    // int k = 2;
+ndl;
+    // nums.assign(it,it+n);
+    // cout<<nums.size()<<endl;
