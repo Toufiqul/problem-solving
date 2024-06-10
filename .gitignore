@@ -1,0 +1,4 @@
+*.exe
+*.o
+/samsung/*.exe
+/samsung/*.o
