@@ -11,11 +11,6 @@ bool uniqueOccurrences(vector<int>& arr) {
     }
     int cnt = m[arr[0]];
 
-    // for(int i= 0;i<arr.size();i++){
-    //     if(m[arr[i]]!=cnt){
-    //         return false;
-    //     }
-    // }
     for(auto i : m){
         for(auto j : m){
             if(i.second==j.second && i!=j)return false;

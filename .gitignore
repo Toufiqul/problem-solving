@@ -2,3 +2,5 @@
 *.o
 /samsung/*.exe
 /samsung/*.o
+/neetCode/*.exe
+/neetCode/*.o
