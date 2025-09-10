@@ -1,35 +1,25 @@
-#include<iostream>
-#include<string>
-#include<algorithm> // for std::transform
+#include <bits/stdc++.h> // for std::transform
 using namespace std;
-
-int main() {
-    string s = "";
-    int t;
-
-    cin >> t;
-
-    cin >> s;
-
-    // Convert the string to uppercase
-    transform(s.begin(), s.end(), s.begin(), ::toupper);
-
-    int arr[26] = {0}; // Initialize array with zeros
-    int cnt = 0;
-
-    for (char c : s) {
-        if (isalpha(c)) {
-            arr[c - 'A']++;
-        }
+vector<int> calCumsum(vector<int> &nums)
+{
+    vector<int> cumsum;
+    cumsum.push_back(nums[0]);
+    for (int i = 1; i < nums.size(); i++)
+    {
+        int sum = *cumsum.end() + nums[i];
+        cumsum.push_back(*(cumsum.end() - 1) + nums[i]);
     }
+    return cumsum;
+}
 
-    for (int i = 0; i < 26; i++) {
-        if (i + 1 >= arr[i]) {
-            cnt++;
-        }
-    }
-
-    cout << cnt << endl;
+int main()
+{
+    vector<int> nums = {5, 4, -1, 7, 8};
+    vector<int> cumsum = calCumsum(nums);
+    for (int i = 0; i < cumsum.size(); i++)
+        cout << cumsum[i] << " ";
+    cout << endl
+         << cumsum.size() << " " << nums.size();
 
     return 0;
 }

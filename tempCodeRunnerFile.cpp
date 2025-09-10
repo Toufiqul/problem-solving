@@ -1,3 +1,1 @@
-    for(int i=0;i<digits.size();i++){
-        cout<<digits[i]<<" ";
-    }
+cumsum.end() - 1
